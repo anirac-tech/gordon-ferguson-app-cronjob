@@ -1,6 +1,6 @@
-# ⚡ Go Starter Function
+# ⚡ Dart Starter Function
 
-A simple starter function. Edit `src/main.go` to get started and create something awesome! 🚀
+A simple starter function. Edit `lib/main.dart` to get started and create something awesome! 🚀
 
 ## 🧰 Usage
 
@@ -35,12 +35,13 @@ Sample `200` Response:
 
 ## ⚙️ Configuration
 
-| Setting           | Value         |
-| ----------------- | ------------- |
-| Runtime           | Go (1.23)     |
-| Entrypoint        | `main.go`     |
-| Permissions       | `any`         |
-| Timeout (Seconds) | 15            |
+| Setting           | Value           |
+| ----------------- | --------------- |
+| Runtime           | Dart (2.17)     |
+| Entrypoint        | `lib/main.dart` |
+| Build Commands    | `dart pub get`  |
+| Permissions       | `any`           |
+| Timeout (Seconds) | 15              |
 
 ## 🔒 Environment Variables
 
