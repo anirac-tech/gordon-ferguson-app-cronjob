@@ -50,9 +50,9 @@ Future<void> updateLatestId(Databases databases, int id) async {
 }
 
 /// Sends a push notification using FCM
-Future<void> sendPushNotification(Messaging messaging, int id) async {
+Future<void> sendPushNotification(Messaging messaging) async {
   await messaging.createPush(
-    messageId: 'new_post_$id',
+    messageId: 'new_post',
     title: 'New Blog Post',
     body: 'Gordon Ferguson just posted a new article to his blog. Check it out!',
   );
@@ -73,7 +73,7 @@ Future<void> run() async {
     await updateLatestId(databases, id);
     log("New post detected. Updating ID and creating push.");
     Messaging messaging = Messaging(client);
-    await sendPushNotification(messaging, id);
+    await sendPushNotification(messaging);
     log("Push created successfully.");
   } else {
     log("ID's match. No action needed.");
