@@ -58,7 +58,7 @@ Future<void> sendPushNotification(Messaging messaging) async {
   );
 }
 
-Future<String> run() async {
+Future<void> run(dynamic context) async {
   Client client = Client()
       .setEndpoint(APPWRITE_URL)
       .setKey(env.getOrElse('API_KEY', () => throw Exception('API_KEY not set.')))
@@ -71,14 +71,13 @@ Future<String> run() async {
 
   if (id != storedId) {
     await updateLatestId(databases, id);
-    log("New post detected. Updating ID and creating push.");
+    context.log("New post detected. Updating ID and creating push.");
     Messaging messaging = Messaging(client);
     await sendPushNotification(messaging);
-    log("Push created successfully.");
+    context.log("Push created successfully.");
   } else {
-    log("ID's match. No action needed.");
+    context.log("ID's match. No action needed.");
   }
 
-  log("Stored ID: $storedId; Latest ID: $id");
-  return "Stored ID: $storedId; Latest ID: $id";
+  context.log("Stored ID: $storedId; Latest ID: $id");
 }
