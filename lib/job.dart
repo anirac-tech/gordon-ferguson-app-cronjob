@@ -58,7 +58,7 @@ Future<void> sendPushNotification(Messaging messaging) async {
   );
 }
 
-Future<void> run() async {
+Future<String> run() async {
   Client client = Client()
       .setEndpoint(APPWRITE_URL)
       .setKey(env.getOrElse('API_KEY', () => throw Exception('API_KEY not set.')))
@@ -80,4 +80,5 @@ Future<void> run() async {
   }
 
   log("Stored ID: $storedId; Latest ID: $id");
+  return "Stored ID: $storedId; Latest ID: $id";
 }
