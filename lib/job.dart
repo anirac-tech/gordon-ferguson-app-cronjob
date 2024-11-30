@@ -49,12 +49,14 @@ Future<void> updateLatestId(Databases databases, int id) async {
 }
 
 /// Sends a push notification using FCM
-Future<void> sendPushNotification(Messaging messaging) async {
+Future<void> sendPushNotification(Messaging messaging, int postId) async {
   await messaging.createPush(
-    messageId: 'new_post',
-    title: 'New Blog Post',
-    body: 'Gordon Ferguson just posted a new article to his blog. Check it out!',
-  );
+      messageId: 'new_post',
+      title: 'New Blog Post',
+      body: 'Gordon Ferguson just posted a new article to his blog. Check it out!',
+      data: {
+        "post_id": postId,
+      });
 }
 
 Future<void> run(dynamic context) async {
@@ -72,7 +74,7 @@ Future<void> run(dynamic context) async {
     await updateLatestId(databases, id);
     context.log("New post detected. Updating ID and creating push.");
     Messaging messaging = Messaging(client);
-    await sendPushNotification(messaging);
+    await sendPushNotification(messaging, id);
     context.log("Push created successfully.");
   } else {
     context.log("ID's match. No action needed.");
